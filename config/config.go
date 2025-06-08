@@ -29,7 +29,7 @@ type (
 	}
 
 	PG struct {
-		URL string `env:"PG_URL,required"`
+		DSN string `env:"PG_DSN,required"`
 	}
 
 	Swagger struct {
