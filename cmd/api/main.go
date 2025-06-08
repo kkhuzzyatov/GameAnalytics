@@ -1,12 +1,15 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/kkhuzzyatov/GameAnalytics/config"
+
+	_ "github.com/lib/pq"
 )
 
 func main() {
@@ -14,6 +17,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	db, err := sql.Open("postgres", cfg.PG.DSN)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer db.Close()
 
 	r := gin.Default()
 
