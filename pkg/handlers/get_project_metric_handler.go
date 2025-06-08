@@ -2,24 +2,21 @@ package handlers
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/kkhuzzyatov/GameAnalytics/pkg/entities"
 )
 
-func UpdatePLayer(c *gin.Context) {
-	var player entities.Player
-
-	err := c.ShouldBindJSON(&player)
+func GetProjectMetric(c *gin.Context) {
+	developerId, err := strconv.Atoi(c.Query("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
+	var projects []entities.Project = nil // todo: we need to get all projects whose developer has id = developerId
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Player is updated",
-		"player":  player,
+		"projects": projects,
 	})
-
-	// todo: we need to update player in db here
 }
