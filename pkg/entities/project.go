@@ -1,7 +1,7 @@
 package entities
 
-type project struct {
-	id      int      `json:"id"`
-	name    string   `json:"name"`
-	players []player `json:"players"`
+type Project struct {
+	Id      int      `json:"id"`
+	Name    string   `json:"name"`
+	Players []Player `json:"players"`
 }

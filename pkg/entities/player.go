@@ -1,6 +1,6 @@
 package entities
 
-type player struct {
-	id      int      `json:"id"`
-	metrics []metric `json:"metrics"`
+type Player struct {
+	Id      int      `json:"id"`
+	Metrics []Metric `json:"metrics"`
 }
