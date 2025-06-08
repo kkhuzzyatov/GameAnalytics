@@ -27,9 +27,15 @@ func main() {
 
 	r := gin.Default()
 
-	r.GET("/ping", func(c *gin.Context) {
+	r.GET("/health", func(c *gin.Context) {
+		if err := db.Ping(); err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"status": "unhealthy",
+			})
+		}
+
 		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
+			"status": "healthy",
 		})
 	})
 
