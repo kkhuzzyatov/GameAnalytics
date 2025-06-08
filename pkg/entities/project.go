@@ -1,7 +1,9 @@
 package entities
 
+import "gorm.io/gorm"
+
 type Project struct {
-	Id      int      `json:"id"`
 	Name    string   `json:"name"`
 	Players []Player `json:"players"`
+	gorm.Model
 }

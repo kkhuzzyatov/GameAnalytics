@@ -1,6 +1,8 @@
 package entities
 
+import "gorm.io/gorm"
+
 type Player struct {
-	Id      int      `json:"id"`
 	Metrics []Metric `json:"metrics"`
+	gorm.Model
 }
