@@ -1,7 +1,7 @@
 package entities
 
-type metric struct {
-	id 		int			`json:"id"`
-	name 	string	`json:"name"`
-	value int			`json:"value"`
+type Metric struct {
+	ID    string `json:"metric_id"`
+	Name  string `json:"name"`
+	Value int    `json:"value"`
 }

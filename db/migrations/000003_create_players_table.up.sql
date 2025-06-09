@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS players (
+    player_id SERIAL PRIMARY KEY
+);
