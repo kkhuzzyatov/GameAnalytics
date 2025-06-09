@@ -1,4 +1,4 @@
-package handler
+package handlers
 
 import (
 	"github.com/kkhuzzyatov/GameAnalytics/pkg/service"
@@ -16,6 +16,7 @@ func NewHandler(services *service.Service) *Handler {
 	}
 }
 
+// InitRoutes initializes the routes for the API returning a gin.Engine instance.
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 
@@ -27,7 +28,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	// usersApi := router.Group("/users", h.userIdentity) // we user middleware to check if user is authenticated
 	// {
-		
+
 	// }
 
 	return router

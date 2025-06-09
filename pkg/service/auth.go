@@ -2,23 +2,24 @@ package service
 
 import (
 	gameAnalytics "github.com/kkhuzzyatov/GameAnalytics"
-	
-	"github.com/kkhuzzyatov/GameAnalytics/pkg/repository"
+
 	"errors"
+
+	"github.com/kkhuzzyatov/GameAnalytics/pkg/repository"
 
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
 )
 
 const (
 	signingKey = "F;f4902k5fkK)(#NF&5g58hfa;f]f"
-	tokenTTL   = 12 * time.Hour
+	// tokenTTL   = 24 * time.Hour
 )
 
 type tokenClaims struct {
-	jwt.StandardClaims
+	jwt.RegisteredClaims
 	UserId int `json:"user_id"`
 }
 
@@ -50,13 +51,12 @@ func (s *AuthService) GenerateToken(username, password string) (string, error) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &tokenClaims{
-		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(tokenTTL).Unix(),
-			IssuedAt:  time.Now().Unix(),
+		jwt.RegisteredClaims{
+			// ExpiresAt: jwt.NewNumericDate(time.Now().Add(tokenTTL)),
+			IssuedAt: jwt.NewNumericDate(time.Now()),
 		},
 		user.Id,
 	})
-
 	return token.SignedString([]byte(signingKey))
 }
 
