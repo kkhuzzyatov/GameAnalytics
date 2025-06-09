@@ -1,5 +1,8 @@
 package gameAnalytics
 
+
+// User represents a user in the game analytics system.
+// means developer's user, not a game user.
 type User struct {
 	Id       int    `json:"-" db:"id"`
 	Name     string `json:"name" binding:"required" db:"name"`
